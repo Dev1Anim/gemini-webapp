@@ -1,6 +1,5 @@
 import { HarmBlockThreshold, HarmCategory } from "https://esm.run/@google/generative-ai";
 
-const ApiKeyInput = document.querySelector("#apiKeyInput");
 const maxTokensInput = document.querySelector("#maxTokens");
 const temperatureInput = document.querySelector("#temperature");
 const temperatureLabel = document.querySelector("#label-temperature");
@@ -11,7 +10,10 @@ const systemPrompt = "If needed, format your answer using markdown." +
 let safetySettings = [];
 
 export function loadSettings() {
-    ApiKeyInput.value = localStorage.getItem("API_KEY");
+    const apiKey = process.env.API_KEY; // Get API key from environment variable
+    if (apiKey) {
+        document.querySelector("#apiKeyInput").value = apiKey; // Set the API key input value
+    }
     if (!localStorage.getItem("maxTokens")) maxTokensInput.value = 1000;
     temperatureInput.value = localStorage.getItem("TEMPERATURE");
     if (!localStorage.getItem("TEMPERATURE")) temperatureInput.value = 70;
@@ -52,14 +54,14 @@ export function getSystemPrompt() {
 }
 
 export function saveSettings() {
-    localStorage.setItem("API_KEY", ApiKeyInput.value);
+    // API key is now managed through environment variables, so no need to save it in localStorage
     localStorage.setItem("maxTokens", maxTokensInput.value);
     localStorage.setItem("TEMPERATURE", temperatureInput.value);
 }
 
 export function getSettings() {
     return {
-        apiKey: ApiKeyInput.value,
+        apiKey: process.env.API_KEY, // Get API key from environment variable
         maxTokens: maxTokensInput.value,
         temperature: temperatureInput.value,
         safetySettings: safetySettings

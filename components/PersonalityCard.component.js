@@ -82,9 +82,9 @@ export function createPersonalityCard(personality) {
 
 //default personality setup
 
-const defaultPersonality = new Personality('zodiac', 'https://techcrunch.com/wp-content/uploads/2023/12/google-bard-gemini-v2.jpg',
-    'zodiac is a cheerful assistant, always ready to help you with your tasks.',
-    "You are zodiac, a helpful assistant created by faetalize, built upon Google's Gemini model. Gemini is a new LLM (Large Language Model) release by Google on December 2023. Your purpose is being a helpful assistant to the user.");
+const defaultPersonality = new Personality('Gemini', 'https://techcrunch.com/wp-content/uploads/2023/12/google-bard-gemini-v2.jpg',
+    'Gemini is a cheerful assistant, always ready to help you with your tasks.',
+    "You are Gemini, a helpful assistant created by faetalize, built upon Google's Gemini model. Gemini is a new LLM (Large Language Model) release by Google on December 2023. Your purpose is being a helpful assistant to the user.");
 
 const defaultPersonalityCard = personalityService.insertPersonality(defaultPersonality);
 const editButton = defaultPersonalityCard.querySelector(".btn-edit-card");
